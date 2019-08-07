@@ -30,6 +30,7 @@ import java.io.InputStream;
  * instance, allowing one to read the underlying content stream multiple times.
  * This makes this interface useful as an abstract content source for mail
  * attachments, for example.
+ * 所有资源接口及实现类的顶级接口，提供了getInputStream方法标准，用于每次返回新的底层资源内容的输入流
  *
  * @author Juergen Hoeller
  * @since 20.01.2004
@@ -38,6 +39,7 @@ import java.io.InputStream;
  * @see InputStreamResource
  * @see ByteArrayResource
  */
+
 public interface InputStreamSource {
 
 	/**

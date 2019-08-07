@@ -401,22 +401,26 @@ public abstract class StringUtils {
 	 */
 	public static String replace(String inString, String oldPattern, @Nullable String newPattern) {
 		if (!hasLength(inString) || !hasLength(oldPattern) || newPattern == null) {
+			//被检查字符串为空或者被替换字符为空或者将插入的字符串为空则返回原字符串
 			return inString;
 		}
 		int index = inString.indexOf(oldPattern);
 		if (index == -1) {
+			//没有符合的则整个字符串返回
 			// no occurrence -> can return input as-is
 			return inString;
 		}
 
 		int capacity = inString.length();
 		if (newPattern.length() > oldPattern.length()) {
+			//StringBuilder默认需要加16字符的缓冲区
 			capacity += 16;
 		}
 		StringBuilder sb = new StringBuilder(capacity);
 
 		int pos = 0;  // our position in the old string
 		int patLen = oldPattern.length();
+		//用循环的方式在被检查的字符串中查找被替换的字符串，用StringBuilder的append方法把将插入的字符串组装起来
 		while (index >= 0) {
 			sb.append(inString.substring(pos, index));
 			sb.append(newPattern);
@@ -425,6 +429,7 @@ public abstract class StringUtils {
 		}
 
 		// append any characters to the right of a match
+		//把右边剩余的没有包含被替换字符串的字符串append到StringBuilder中
 		sb.append(inString.substring(pos));
 		return sb.toString();
 	}

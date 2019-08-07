@@ -33,6 +33,7 @@ import org.springframework.lang.Nullable;
  * <p>An InputStream can be opened for every resource if it exists in
  * physical form, but a URL or File handle can just be returned for
  * certain resources. The actual behavior is implementation-specific.
+ * 扩展Resource接口，抽象具体的底层资源操作描述
  *
  * @author Juergen Hoeller
  * @since 28.12.2003
@@ -49,6 +50,7 @@ import org.springframework.lang.Nullable;
  * @see ByteArrayResource
  * @see InputStreamResource
  */
+
 public interface Resource extends InputStreamSource {
 
 	/**

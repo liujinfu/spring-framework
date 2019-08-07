@@ -38,11 +38,14 @@ import org.springframework.util.ResourceUtils;
  * <p>The "exists" method will check whether a File or InputStream can
  * be opened; "isOpen" will always return false; "getURL" and "getFile"
  * throw an exception; and "toString" will return the description.
+ * 用于继承的便利基类，在所实现的接口上预实现一系列的典型行为。继承AbstractResource的类可以自己重写里面的方法，
+ * 这样可以根据不同的资源类实现具体的相应方法。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
  * @since 28.12.2003
  */
+
 public abstract class AbstractResource implements Resource {
 
 	private static final LogAccessor logAccessor = new LogAccessor(AbstractResource.class);
