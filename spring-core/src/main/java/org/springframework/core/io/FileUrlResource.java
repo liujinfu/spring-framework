@@ -29,7 +29,6 @@ import java.nio.file.StandardOpenOption;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ResourceUtils;
 
-
 /**
  * Subclass of {@link UrlResource} which assumes file resolution, to the degree
  * of implementing the {@link WritableResource} interface for it. This resource
