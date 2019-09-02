@@ -22,6 +22,7 @@ import org.springframework.util.StringUtils;
 /**
  * {@link ResourceLoader} implementation that interprets plain resource paths
  * as relative to a given {@code java.lang.Class}.
+ * 覆写 #getResourceByPath(String path) 方法，并返回其对应的 ClassRelativeContextResource 的资源类型。
  *
  * @author Juergen Hoeller
  * @since 3.0
