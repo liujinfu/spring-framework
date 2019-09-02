@@ -38,8 +38,8 @@ import org.springframework.util.ResourceUtils;
  * <p>The "exists" method will check whether a File or InputStream can
  * be opened; "isOpen" will always return false; "getURL" and "getFile"
  * throw an exception; and "toString" will return the description.
- * 用于继承的便利基类，在所实现的接口上预实现了Resource接口的大部分公共实现。
- * 继承AbstractResource的类可以自己重写里面的方法，这样可以根据不同的资源类实现具体的相应方法。
+ * 用于继承的便利基类，在所实现的接口上预实现一系列的典型行为。继承AbstractResource的类可以自己重写里面的方法，
+ * 这样可以根据不同的资源类实现具体的相应方法。
  *
  * @author Juergen Hoeller
  * @author Sam Brannen
@@ -103,7 +103,6 @@ public abstract class AbstractResource implements Resource {
 	/**
 	 * This implementation throws a FileNotFoundException, assuming
 	 * that the resource cannot be resolved to a URL.
-	 * 交给子类实现
 	 */
 	@Override
 	public URL getURL() throws IOException {
@@ -113,7 +112,6 @@ public abstract class AbstractResource implements Resource {
 	/**
 	 * This implementation builds a URI based on the URL returned
 	 * by {@link #getURL()}.
-	 * 基于getURL()返回的url构建URI
 	 */
 	@Override
 	public URI getURI() throws IOException {
@@ -129,7 +127,6 @@ public abstract class AbstractResource implements Resource {
 	/**
 	 * This implementation throws a FileNotFoundException, assuming
 	 * that the resource cannot be resolved to an absolute file path.
-	 * 交给子类实现
 	 */
 	@Override
 	public File getFile() throws IOException {
@@ -141,7 +138,6 @@ public abstract class AbstractResource implements Resource {
 	 * with the result of {@link #getInputStream()}.
 	 * <p>This is the same as in {@link Resource}'s corresponding default method
 	 * but mirrored here for efficient JVM-level dispatching in a class hierarchy.
-	 * 根据 getInputStream() 的返回结果构建 ReadableByteChannel
 	 */
 	@Override
 	public ReadableByteChannel readableChannel() throws IOException {
@@ -153,7 +149,6 @@ public abstract class AbstractResource implements Resource {
 	 * content length. Subclasses will almost always be able to provide
 	 * a more optimal version of this, e.g. checking a File length.
 	 * @see #getInputStream()
-	 * 这个资源内容长度实际就是资源的字节长度，通过全部读取一遍来判断
 	 */
 	@Override
 	public long contentLength() throws IOException {
@@ -182,7 +177,6 @@ public abstract class AbstractResource implements Resource {
 	 * This implementation checks the timestamp of the underlying File,
 	 * if available.
 	 * @see #getFileForLastModifiedCheck()
-	 * 返回资源最后的修改时间，基于getFileForLastModifiedCheck()
 	 */
 	@Override
 	public long lastModified() throws IOException {
@@ -210,7 +204,6 @@ public abstract class AbstractResource implements Resource {
 	/**
 	 * This implementation throws a FileNotFoundException, assuming
 	 * that relative resources cannot be created for this resource.
-	 * 交给子类实现
 	 */
 	@Override
 	public Resource createRelative(String relativePath) throws IOException {
@@ -220,7 +213,6 @@ public abstract class AbstractResource implements Resource {
 	/**
 	 * This implementation always returns {@code null},
 	 * assuming that this resource type does not have a filename.
-	 * 获取资源名称，默认返回 null ，交给子类实现
 	 */
 	@Override
 	@Nullable
